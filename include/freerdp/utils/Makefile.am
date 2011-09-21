@@ -12,4 +12,5 @@ include_HEADERS = \
 	stream.h \
 	unicode.h \
 	wait_obj.h \
-	hexdump.h
+	hexdump.h \
+	usleep.h
