@@ -65,6 +65,7 @@ set_default_params(xfInfo * xfi)
 	settings->height = 768;
 	strcpy(settings->server, "127.0.0.1");
 	strcpy(settings->username, "guest");
+	settings->interactive_prompt = 1;
 	settings->tcp_port_rdp = 3389;
 	settings->encryption = 1;
 	settings->server_depth = 16;
@@ -107,6 +108,7 @@ out_args(void)
 		"\t-u: username\n"
 		"\t-p: password\n"
 		"\t-d: domain\n"
+		"\t-i: turn off interactive prompting\n"
 		"\t-k: keyboard layout ID\n"
 		"\t-K: do not interfere with window manager bindings\n"
 		"\t--kbd-list: list all keyboard layout IDs\n"
@@ -236,6 +238,11 @@ process_params(xfInfo * xfi, int argc, char ** argv, int * pindex)
 			}
 			strncpy(settings->domain, argv[*pindex], sizeof(settings->domain) - 1);
 			settings->domain[sizeof(settings->domain) - 1] = 0;
+		}
+		else if (strcmp("-i", argv[*pindex]) == 0)
+		{
+			settings->interactive_prompt = 0;
+			printf("interactive promting turned off\n");
 		}
 		else if (strcmp("-k", argv[*pindex]) == 0)
 		{

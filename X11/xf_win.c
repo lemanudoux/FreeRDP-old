@@ -1028,7 +1028,7 @@ l_ui_authenticate(struct rdp_inst * inst)
 	printf("Please enter NLA login credential.\n");
 
 	printf("User name:");
-	if (inst->settings->username[0] == 0)
+	if (inst->settings->interactive_prompt && inst->settings->username[0] == 0)
 	{
 		if (fgets(inst->settings->username, sizeof(inst->settings->username), stdin) == NULL)
 		{
@@ -1041,7 +1041,7 @@ l_ui_authenticate(struct rdp_inst * inst)
 		printf("%s\n", inst->settings->username);
 
 	printf("Domain:");
-	if (inst->settings->domain[0] == 0)
+	if (inst->settings->interactive_prompt && inst->settings->domain[0] == 0)
 	{
 		if (fgets(inst->settings->domain, sizeof(inst->settings->domain), stdin) == NULL)
 		{
@@ -1053,7 +1053,7 @@ l_ui_authenticate(struct rdp_inst * inst)
 	else
 		printf("%s\n", inst->settings->domain);
 
-	if (!inst->settings->password[0])
+	if (inst->settings->interactive_prompt && !inst->settings->password[0])
 	{
 		pass = getpass("Password:");
 		strncpy(inst->settings->password, pass, sizeof(inst->settings->password) - 1);

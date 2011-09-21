@@ -54,6 +54,7 @@ struct rdp_set
 	char shell[256];
 	char directory[256];
 	char username[256];
+	int interactive_prompt;    
 	int tcp_port_rdp;
 	int keyboard_layout;
 	int keyboard_type;
